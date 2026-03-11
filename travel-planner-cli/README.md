@@ -33,4 +33,4 @@ Suggested itinerary: Explore local attractions and nature
 
 ## Author
 
-Shweta
+Sweata
