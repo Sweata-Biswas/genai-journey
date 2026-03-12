@@ -4,26 +4,31 @@
 #number of days
 #type of trip ( mountain/beach)
 #output - short iternary idea
+import random
+file = open("destinations.txt","r")
+destinations = file.readlines()
+#replacing the hardcode logic from destinations file.
+destination = random.choice(destinations)
 
-def suggest_destination(budget,trip_type):
-    if trip_type=="mountains":
-        if budget< 15000:
-            return "Kasol or Triund"
-        elif budget <30000:
-            return "Dharamshala or Manali"
-        else:
-            return "Spiti"
-    elif trip_type=="beach":
-        if budget<15000:
-            return "Gokarna"
-        elif budget<30000:
-            return "Goa"
-        else:
-            return "Kerala"
+# def suggest_destination(budget,trip_type):
+#     if trip_type=="mountains":
+#         if budget< 15000:
+#             return "Kasol or Triund"
+#         elif budget <30000:
+#             return "Dharamshala or Manali"
+#         else:
+#             return "Spiti"
+#     elif trip_type=="beach":
+#         if budget<15000:
+#             return "Gokarna"
+#         elif budget<30000:
+#             return "Goa"
+#         else:
+#             return "Kerala"
         
 
-    else:
-        return "explore local desitnation"
+#     else:
+#         return "explore local desitnation"
     
 
 def itinerary(days):
@@ -38,7 +43,7 @@ budget = int(input("Enter your Budget:"))
 days = int(input("Enter number of days you are planning:"))
 trip_type = input("Enter your trip type (mountains/beach):") 
 
-destination = suggest_destination(budget,trip_type)
+# destination = suggest_destination(budget,trip_type)
 itinerary_days = itinerary(days)
  
 print("Based on your budget and trip type, you should visit: ",destination)
