@@ -59,6 +59,24 @@ Condition: {{ weather.description }}
 </div>
 
 {% endif %}
+
+
+{% if error %}
+
+<div class="card mt-4 bg-secondary text-white">
+
+<div class="card-body text-center">
+
+<h4>{{ error.city }}</h4>
+
+<p class="mb-1">
+Info: {{ error.description }}
+</p>
+
+</div>
+</div>
+
+{% endif %}
 </div>
 </div>
 </div>
