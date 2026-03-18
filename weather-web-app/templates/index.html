@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 </head>
 
-<body class="mt-5 bg-light" style="font-family:Poppins">
+<body class="{{weather.background if weather else 'bg-light mt-5'}}" style="font-family:Poppins">
 <div class="container">
 <div class="row justify-content-center mt-5 ">
     <div class="col-md-6">
@@ -43,7 +43,7 @@ Check Weather
 <div class="card-body text-center">
 
 <h4>{{ weather.city }}</h4>
-    <h1>{{ weather.icon }}</h1>
+    <h1  style="font-size:60px">{{ weather.icon }}</h1>
 <p class="mb-1">
 Temperature: {{ weather.temperature }} °C
 </p>
@@ -60,10 +60,10 @@ Condition: {{ weather.description }}
 </div>
 </div>
 
-{% endif %}
 
 
-{% if error %}
+
+{% elif error %}
 
 <div class="card mt-4 bg-secondary text-white">
 
