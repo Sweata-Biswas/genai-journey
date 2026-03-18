@@ -2,6 +2,7 @@ from flask import Flask , request, render_template
 import requests
 #create flask server
 app = Flask(__name__)
+search_history=[]
 def get_background(description):
 
     description = description.lower()
@@ -33,7 +34,8 @@ def get_weather_symbol(description):
 
     elif "storm" in description_lower or "thunder" in description_lower:
         weather_icon = "⛈️"
-
+    elif "snow" in description_lower:
+        weather_icon = "❄️"
     else:
         weather_icon = "🌍"
     return weather_icon
@@ -45,9 +47,13 @@ def get_weather_symbol(description):
 def index():
     weather = None
     error = None
+    global search_history
     if request.method == "POST":
         city = request.form["city"]
         url = f"https://wttr.in/{city}?format=j1"
+        search_history.append(city)
+        if len(search_history)>5:
+            search_history.pop(0)
         try:
             response = requests.get(url)
             if response.status_code != 200:
@@ -76,7 +82,7 @@ def index():
                 'city': city,
                 'description': "Weather data not available" 
             }
-    return render_template('index.html', weather=weather,error= error)
+    return render_template('index.html', weather=weather,error= error,history=search_history)
 
 
 #This starts the server.

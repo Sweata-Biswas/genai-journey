@@ -79,6 +79,16 @@ Info: {{ error.description }}
 </div>
 
 {% endif %}
+{%  if history %}
+<div class="mt-4">
+    <h4 class="text-bold">Recent History:</h4>
+    <ul>
+        {%for city in history%}
+        <li>{{city}}</li>
+        {%endfor%}
+    </ul>
+</div>
+{%endif%}
 </div>
 </div>
 </div>
