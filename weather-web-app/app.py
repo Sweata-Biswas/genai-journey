@@ -39,6 +39,24 @@ def get_weather_symbol(description):
     else:
         weather_icon = "🌍"
     return weather_icon
+
+
+def get_weather_advice(description):
+    description_lower = description.lower()
+    if "rain" in description_lower:
+        return "Carry an umbrella and enjoy a cozy indoor day ☕"
+    elif "cloud" in description_lower:
+        return "Nice weather for a walk 🌿"
+    elif "sun" in description_lower or "clear" in description_lower:
+        return "Great day to go out and be productive ☀️"
+    elif "haze" in description_lower or "mist" in description_lower:
+        return "Avoid long outdoor exposure, take care 🌫️"
+    elif "storm" in description_lower or "thunder" in description_lower:
+       return "Better to stay indoors and stay safe ⛈️"
+    elif "snow" in description_lower:
+        return "Carry cold cloths and gear❄️"
+    else:
+         return "Have a good day and stay prepared 🌍"
 #Python program → becomes a web server
 @app.route("/", methods=["GET","POST"])
 # When user visits "/" , run this function
@@ -59,7 +77,7 @@ def index():
             if response.status_code != 200:
                 raise Exception("API request failed")
 
-            data = response.json()['data']
+            data = response.json()
             if "current_condition" in data:
                 current_data =data['current_condition'][0]
                 temperature = current_data.get('temp_C','N/A')
@@ -71,7 +89,8 @@ def index():
                     'humidity': humidity,
                     'description': weather_desc,
                     'icon': get_weather_symbol(weather_desc),
-                    'background':get_background(weather_desc)
+                    'background':get_background(weather_desc),
+                    'advice':get_weather_advice(weather_desc)
                     
                 }
 
